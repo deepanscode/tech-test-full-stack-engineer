@@ -17,6 +17,7 @@
     <ProjectReference Include="..\TradieApp.Domain\TradieApp.Domain.csproj" />
     <ProjectReference Include="..\TradieApp.Application\TradieApp.Application.csproj" />
     <ProjectReference Include="..\TradieApp.Infrastructure\TradieApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\TradieApp.Presentation\TradieApp.Presentation.csproj" />
   </ItemGroup>
 
 </Project>

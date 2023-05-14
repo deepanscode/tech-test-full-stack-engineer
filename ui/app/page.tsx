@@ -1,8 +1,7 @@
 'use client'
 
 import 'flowbite';
-import InvitedLead from './components/InvitedLead'
-import AcceptedLead from './components/AcceptedLead'
+import Job from './components/Job'
 import TabHeaders from './components/common/Tabs/TabHeaders';
 import TabHeader from './components/common/Tabs/TabHeader';
 import TabContents from './components/common/Tabs/TabContents';
@@ -22,12 +21,12 @@ export default function Home() {
 			</TabHeaders>
 			<TabContents id='leadsTabContent'>
 				<TabContent id="invited" source='invited-tab'>
-					<InvitedLead/>
-					<InvitedLead/>
-					<InvitedLead/>
+					<Job/>
+					<Job/>
+					<Job/>
 				</TabContent>
 				<TabContent id="accepted" source='accepted-tab'>
-					<AcceptedLead/>
+					<Job/>
 				</TabContent>
 				</TabContents>
 		</main>

@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using TradieApp.Api;
 
-namespace TradieApp.Api.Controllers;
+namespace TradieApp.Presentation.Controllers;
 
 [ApiController]
 [Route("[controller]")]

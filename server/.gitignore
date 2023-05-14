@@ -1,6 +1,6 @@
 *.swp
 *.*~
-project.lock.json
+project.lock.jsondotnet 
 .DS_Store
 *.pyc
 nupkg/
