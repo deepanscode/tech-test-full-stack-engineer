@@ -1,6 +1,7 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faMapMarkerAlt, faSuitcase,faEnvelope,faPhone} from '@fortawesome/free-solid-svg-icons';
 import format from "date-fns/format";
+import { Job } from '@/models/job';
 
 interface Props {
     job: Job

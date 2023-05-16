@@ -4,6 +4,7 @@ import format from "date-fns/format";
 import {JobStatus} from "@/enums";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {updateJobStatus} from "@/hooks/useJobs";
+import { Job } from '@/models/job';
 
 interface Props {
     job: Job
@@ -14,7 +15,8 @@ export default function NewJob({job}: Props) {
     const mutation = useMutation({
         mutationFn: ({id, status}: { id: number, status: JobStatus }) => updateJobStatus(id, status),
         onSuccess: () => {
-            queryClient.invalidateQueries(['jobs', 1,  10]);
+            queryClient.invalidateQueries(['jobs', JobStatus.new]);
+            queryClient.invalidateQueries(['jobs', JobStatus.accepted]);
         }
     })
     return (

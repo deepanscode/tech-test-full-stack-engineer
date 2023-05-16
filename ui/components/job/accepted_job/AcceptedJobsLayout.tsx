@@ -1,30 +1,41 @@
-import {useState} from "react";
-import {fetchJobs, useJobs} from "@/hooks";
-import {JobStatus} from "@/enums";
+import { useState } from "react";
+import { useJobs } from "@/hooks";
+import { JobStatus } from "@/enums";
 import AcceptedJob from "@/components/job/accepted_job/AcceptedJob";
-import {dehydrate, QueryClient} from "@tanstack/react-query";
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function AcceptedJobsLayout() {
-    const [page] = useState<number>(1);
-    const [size] = useState<number>(10);
     const [status] = useState<JobStatus>(JobStatus.accepted);
 
-    const {data = [], isLoading} = useJobs(page, size, status);
+    const {
+        data,
+        fetchNextPage,
+        hasNextPage,
+        isLoading,
+        isError,
+        error
+    } = useJobs(10, status);
 
-    return (isLoading ? <div>loading...</div> : data.map((d: Job) => <AcceptedJob key={d.id} job={d}/>))
-}
-
-export async function getStaticProps() {
-    const queryClient = new QueryClient()
-
-    await queryClient.prefetchQuery({
-        queryKey: ['jobs', 10],
-        queryFn: () => fetchJobs(1, 10, JobStatus.accepted),
-    })
-
-    return {
-        props: {
-            dehydratedState: dehydrate(queryClient),
-        },
+    if (isLoading) {
+        return <div className="info-text">Loading...</div>;
     }
+
+    if (isError && error) {
+        return <div className="info-text">Error: Something went wrong!</div>;
+    }
+
+    return (
+        <InfiniteScroll
+            dataLength={data ? data.pages.reduce((acc, page) => acc + page.jobs.length, 0) : 0}
+            next={fetchNextPage}
+            hasMore={hasNextPage || false}
+            loader={<div className="info-text">Loading...</div>}
+            endMessage={<i/>}
+        >
+            {data &&
+                data.pages.map((page) =>
+                    page.jobs.map((job) => <AcceptedJob key={job.id} job={job} />)
+                )}
+        </InfiniteScroll>
+    );
 }

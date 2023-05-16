@@ -1,30 +1,41 @@
-import {useState} from "react";
-import {fetchJobs, useJobs} from "@/hooks";
-import {JobStatus} from "@/enums";
+import { useState } from "react";
+import { useJobs } from "@/hooks";
+import { JobStatus } from "@/enums";
 import NewJob from "@/components/job/new_jobs/NewJob";
-import {dehydrate, QueryClient} from "@tanstack/react-query";
+import InfiniteScroll from 'react-infinite-scroll-component';
 
-export default function NewJobsLayout() {
-    const [page] = useState<number>(1);
-    const [size] = useState<number>(10);
+export default function AcceptedJobsLayout() {
     const [status] = useState<JobStatus>(JobStatus.new);
 
-    const {data = [], isLoading, isFetching} = useJobs(page, size, status);
+    const {
+        data,
+        fetchNextPage,
+        hasNextPage,
+        isLoading,
+        isError,
+        error
+    } = useJobs(10, status);
 
-    return (isLoading ? <div>loading...</div> : data.map((d: Job) => <NewJob key={d.id} job={d}/>))
-}
-
-export async function getStaticProps() {
-    const queryClient = new QueryClient()
-
-    await queryClient.prefetchQuery({
-        queryKey: ['jobs', 10],
-        queryFn: () => fetchJobs(1, 10, JobStatus.new),
-    })
-
-    return {
-        props: {
-            dehydratedState: dehydrate(queryClient),
-        },
+    if (isLoading) {
+        return <div className="info-text">Loading...</div>;
     }
+
+    if (isError && error) {
+        return <div className="info-text">Error: Something went wrong!</div>;
+    }
+
+    return (
+        <InfiniteScroll
+            dataLength={data ? data.pages.reduce((acc, page) => acc + page.jobs.length, 0) : 0}
+            next={fetchNextPage}
+            hasMore={hasNextPage || false}
+            loader={<p className="info-text">Loading...</p>}
+            endMessage={<i/>}
+        >
+            {data &&
+                data.pages.map((page) =>
+                    page.jobs.map((job) => <NewJob key={job.id} job={job} />)
+                )}
+        </InfiniteScroll>
+    );
 }

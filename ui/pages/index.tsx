@@ -1,16 +1,10 @@
 'use client'
 
 import 'flowbite';
-import {dehydrate, QueryClient} from "@tanstack/react-query";
 import TabHeaders from "@/components/common/Tabs/TabHeaders";
 import TabHeader from "@/components/common/Tabs/TabHeader";
 import TabContents from "@/components/common/Tabs/TabContents";
 import TabContent from "@/components/common/Tabs/TabContent";
-import NewJob from "@/components/job/new_jobs/NewJob";
-import AcceptedJob from "@/components/job/accepted_job/AcceptedJob";
-import {fetchJobs, useJobs} from "@/hooks";
-import {JobStatus} from "@/enums";
-import {useState} from "react";
 import NewJobsLayout from "@/components/job/new_jobs/NewJobsLayout";
 import AcceptedJobsLayout from "@/components/job/accepted_job/AcceptedJobsLayout";
 

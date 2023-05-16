@@ -1,4 +1,4 @@
-interface Job {
+export interface Job {
     id: number;
     status: string;
     suburbId: number;
@@ -13,4 +13,11 @@ interface Job {
     description: string;
     createdAt: string;
     updatedAt: string;
+}
+
+export interface JobResult {
+    jobs: Job[];
+    totalRecordCount: number;
+    pageNumber: number;
+    pageSize: number;
 }
