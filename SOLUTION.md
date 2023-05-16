@@ -43,4 +43,4 @@ Given more time, there are several enhancements that could further improve the p
  docker-compose up -d
  ```
 3. This will create and run three containers for the backend service, UI application and the mySQL database.
-4. You can now access the UI via http://localhost:3000
+4. You can now access the UI via http://localhost:3001
