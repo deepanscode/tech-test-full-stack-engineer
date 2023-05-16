@@ -38,7 +38,7 @@ namespace TradieApp.Presentation.Controllers.V1
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PagedCollection<Job>))]
         public async Task<IActionResult> UpdateJobStatus(int id, [FromBody] UpdateJobStatusModel model)
         {
-            var response = await _mediator.Send(new ChangeJobStatusCommand(id, model?.JobStatus ?? JobStatusEnum.none)).ConfigureAwait(false);
+            var response = await _mediator.Send(new ChangeJobStatusCommand(id, model.JobStatus)).ConfigureAwait(false);
             return Ok(response);
         }
     }

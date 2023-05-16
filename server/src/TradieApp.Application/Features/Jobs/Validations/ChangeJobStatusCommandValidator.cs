@@ -11,7 +11,6 @@ namespace TradieApp.Application.Features.Jobs.Validations
 		{
             RuleFor(it => it.JobId).NotEqual(0);
             RuleFor(it => it.JobStatus).NotEmpty();
-            RuleFor(it => it.JobStatus).NotEqual(Domain.Enums.JobStatusEnum.none).WithMessage("Invalid job status value");
             RuleFor(it => it.JobStatus).NotEqual(Domain.Enums.JobStatusEnum.@new).WithMessage("Invalid job status value");
         }
 	}

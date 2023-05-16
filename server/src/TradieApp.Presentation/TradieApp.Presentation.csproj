@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -15,4 +16,14 @@
       <ProjectReference Include="..\TradieApp.Domain\TradieApp.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Controllers\V1\" />
+      <None Remove="Middlewares\" />
+      <None Remove="Models\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Controllers\V1\" />
+      <Folder Include="Middlewares\" />
+      <Folder Include="Models\" />
+    </ItemGroup>
 </Project>

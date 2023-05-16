@@ -8,7 +8,7 @@ interface TabHeadersProps {
 const TabHeaders: React.FC<TabHeadersProps> = ({ target: dataTansToggle, children }) => {
 	return (
 		<div className="p-4 w-full">
-			<ul className="flex flex-wrap w-full -mb-px text-sm font-medium text-center" data-tabs-toggle={`#${dataTansToggle}`} role="tablist">{children}</ul>
+			<ul className="nav-tabs" data-tabs-toggle={`#${dataTansToggle}`} role="tablist">{children}</ul>
 		</div>
 	)
 };

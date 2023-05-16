@@ -10,13 +10,20 @@ namespace TradieApp.Application.Mapper
 		public JobMapperProfile()
 		{
 			CreateMap<Job, GetJobsQueryResponseDto>()
-				.ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
-				.ForMember(dest => dest.SuburbName, opt => opt.MapFrom(src => src.Suburb.Name))
-				.ForMember(dest => dest.ContactName, opt => opt.MapFrom(src => src.Contact.Name))
-				.ForMember(dest => dest.ContactPhone, opt => opt.MapFrom(src => src.Contact.Phone))
-				.ForMember(dest => dest.ContactEmail, opt => opt.MapFrom(src => src.Contact.Email))
-				.ForMember(dest => dest.Postcode, opt => opt.MapFrom(src => src.Suburb.Postcode));
-        }
+				.ConstructUsing(src => new GetJobsQueryResponseDto(
+					src.Id, 
+					src.Status, 
+					src.Suburb.Name,
+					src.Suburb.Postcode, 
+					src.Category.Name, 
+					src.Contact.Name, 
+					src.Contact.Phone, 
+					src.Contact.Email,
+					src.Price, 
+					src.Description, 
+					src.CreatedAt, 
+					src.UpdatedAt));
+		}
 	}
 }
 

@@ -1,4 +1,5 @@
-﻿using TradieApp.Domain.Entities;
+﻿using TradieApp.Application.Common.Exceptions;
+using TradieApp.Domain.Entities;
 using TradieApp.Domain.Repositories;
 using TradieApp.Infrastructure.Data;
 
@@ -15,8 +16,16 @@ public class JobRepository : IJobRepository
 
     public async Task<Job> GetByIdAsync(int jobId)
     {
-        return await _dbContext.Jobs.FindAsync(jobId);
+        var job = await _dbContext.Jobs.FindAsync(jobId);
+
+        if (job == null)
+        {
+            throw new NotFoundException($"Job with {jobId} not found");
+        }
+
+        return job;
     }
+
 
     public async Task UpdateAsync(Job job)
     {

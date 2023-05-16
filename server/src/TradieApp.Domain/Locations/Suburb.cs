@@ -11,7 +11,6 @@ public class Suburb : Entity
         Postcode = postcode;
     }
 
-    public int Id { get; private set; }
     public string Name { get; private set; }
     public string Postcode { get; private set; }
 }

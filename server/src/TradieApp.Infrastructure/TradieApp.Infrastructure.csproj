@@ -9,6 +9,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+    <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="6.1.0" />
+    <PackageReference Include="EFCore.NamingConventions" Version="7.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,4 +19,12 @@
     <ProjectReference Include="..\TradieApp.Application\TradieApp.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Repositories\" />
+    <None Remove="UnitOfWork\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+    <Folder Include="UnitOfWork\" />
+  </ItemGroup>
 </Project>

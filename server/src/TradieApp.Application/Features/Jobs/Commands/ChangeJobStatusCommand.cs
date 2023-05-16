@@ -43,7 +43,7 @@ public class ChangeJobStatusCommandHandler : IRequestHandler<ChangeJobStatusComm
             throw new BadRequestException("Invalid job");
         }
 
-        job.Status = request.JobStatus;
+        job.UpdateStatus(request.JobStatus);
         await _unitOfWork.SaveChangesAsync();
 
         return true;

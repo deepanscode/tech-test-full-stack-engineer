@@ -5,25 +5,19 @@ using TradieApp.Domain.Locations;
 
 namespace TradieApp.Application.Features.Jobs.DTO;
 
-public class GetJobsQueryResponseDto
-{
-    public int Id { get; private set; }
-    public JobStatusEnum Status { get; private set; }
+public record GetJobsQueryResponseDto(
+    int Id,
+    JobStatusEnum Status,
+    string SuburbName,
+    string Postcode,
+    string CategoryName,
+    string ContactName,
+    string ContactPhone,
+    string ContactEmail,
+    int Price,
+    string Description,
+    DateTime CreatedAt,
+    DateTime UpdatedAt
+);
 
-    public int SuburbId { get; set; }
-    public string SuburbName { get; private set; }
-    public string Postcode { get; private set; }
-
-    public int CategoryId { get; set; }
-    public string CategoryName { get; private set; }
-
-    public string ContactName { get; private set; }
-    public string ContactPhone { get; private set; }
-    public string ContactEmail { get; private set; }
-
-    public int Price { get; private set; }
-    public string Description { get; private set; }
-    public DateTime CreatedAt { get; private set; }
-    public DateTime UpdatedAt { get; private set; }
-}
 

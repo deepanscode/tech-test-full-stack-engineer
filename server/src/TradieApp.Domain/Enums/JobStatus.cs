@@ -6,7 +6,6 @@ namespace TradieApp.Domain.Enums;
 
 public enum JobStatusEnum
 {
-    none,
     @new,
     accepted,
     declined

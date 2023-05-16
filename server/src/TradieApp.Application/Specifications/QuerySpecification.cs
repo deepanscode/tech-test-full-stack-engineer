@@ -65,7 +65,7 @@ public class QuerySpecification<TEntity> : Specification<TEntity> where TEntity 
 
     public void AddOrderBy(string[] sortParams, OrderBy orderBy = OrderBy.ASC)
     {
-        IOrderedSpecificationBuilder<TEntity> query = null;
+        IOrderedSpecificationBuilder<TEntity> query = null!;
         foreach (var sort in sortParams)
         {
             if (!string.IsNullOrEmpty(sort))
@@ -96,10 +96,10 @@ public class QuerySpecification<TEntity> : Specification<TEntity> where TEntity 
         switch (orderBy)
         {
             case OrderBy.ASC:
-                return Query.OrderBy(orderExpression);
+                return Query.OrderBy(orderExpression!);
 
             case OrderBy.DESC:
-                return Query.OrderByDescending(orderExpression);
+                return Query.OrderByDescending(orderExpression!);
 
             default:
                 throw new ArgumentOutOfRangeException(nameof(orderBy));
@@ -111,10 +111,10 @@ public class QuerySpecification<TEntity> : Specification<TEntity> where TEntity 
         switch (orderBy)
         {
             case OrderBy.ASC:
-                return query.ThenBy(orderExpression);
+                return query.ThenBy(orderExpression!);
 
             case OrderBy.DESC:
-                return query.ThenByDescending(orderExpression);
+                return query.ThenByDescending(orderExpression!);
 
             default:
                 throw new ArgumentOutOfRangeException(nameof(orderBy));
